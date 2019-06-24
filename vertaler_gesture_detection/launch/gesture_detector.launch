@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- Parameters -->
+  <arg name="model_path" default="$(find vertaler_gesture_detection)/cfg/models"/>
+  <arg name="model_name" default="tiny-yolo-voc-22c-eb"/>
+
+  <!-- Launch OD -->
+  <node name="object_detection" type="gesture_detector.py" pkg="vertaler_gesture_detection" args="$(arg model_path)"/>
+</launch>

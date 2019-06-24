@@ -1,0 +1,26 @@
+<!--
+ Copyright (C) 2019 Earth Rover Limited. All rights reserved.
+-->
+
+<!-- Plant detection
+  This file launches the plant detection node
+  Author: David Llevat Pamies (dllevat@edgebrain.io)
+  Date: 05/2019
+-->
+
+<launch>
+
+  <!-- Parameters -->
+  <arg name="input_image" default="mapping/rgb_for_detection" />
+  <arg name="output_result" default="od/result" />
+  <arg name="model_path" default="$(find earth_rover_plant_detection)/models">
+  <arg name="model_name" default="tiny-yolo-voc-22c-eb">
+
+  <!-- Launch OD -->
+  <node name="object_detection" type="predictor.py" pkg="earth_rover_plant_detection" args="$(arg model_path)">
+    <!-- input -->
+    <remap from="od/image_to_process" to="$(arg input_image)"/>
+    <remap from="od/result" to="$(arg output_result)"/>
+  </node>
+
+</launch>
